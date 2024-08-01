@@ -1,18 +1,18 @@
 {
   "files": {
     "main.css": "/research_project/static/css/main.73c518df.css",
-    "main.js": "/research_project/static/js/main.7ecf6f11.js",
+    "main.js": "/research_project/static/js/main.a94bfd9d.js",
     "static/js/453.5e560239.chunk.js": "/research_project/static/js/453.5e560239.chunk.js",
     "static/media/sanfranciscodisplay-regular-webfont.woff": "/research_project/static/media/sanfranciscodisplay-regular-webfont.aaaf0ea48fc61d23c842.woff",
     "static/media/candy.png": "/research_project/static/media/candy.d6542d0285d3f096c25f.png",
     "static/media/ios_del.png": "/research_project/static/media/ios_del.533d5d97ec70c8a0a061.png",
     "index.html": "/research_project/index.html",
     "main.73c518df.css.map": "/research_project/static/css/main.73c518df.css.map",
-    "main.7ecf6f11.js.map": "/research_project/static/js/main.7ecf6f11.js.map",
+    "main.a94bfd9d.js.map": "/research_project/static/js/main.a94bfd9d.js.map",
     "453.5e560239.chunk.js.map": "/research_project/static/js/453.5e560239.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.73c518df.css",
-    "static/js/main.7ecf6f11.js"
+    "static/js/main.a94bfd9d.js"
   ]
 }
