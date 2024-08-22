@@ -9,7 +9,7 @@ const isNewUser = !Boolean(localStorage.getItem('visit'))
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <React.StrictMode>
-    <BrowserRouter basename='/research_project'>
+    <BrowserRouter>
       <App isNewUser={isNewUser}/>
     </BrowserRouter>
   </React.StrictMode>
