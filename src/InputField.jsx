@@ -1,36 +1,54 @@
-import Clear from './Clear'
+import { forwardRef } from 'react'
+import ClearBtn from './ClearBtn'
+import ShowStringBtn from './ShowStringBtn'
 import {v4 as uuidv4} from 'uuid'
 
-
-function InputField ({name, value, focused, setFocus, aggregator, setStyle }) {
+function InputField ({name, value, focused, setFocus, unmaskedInput, setUnmaskedInput, aggregator, setStyle, label }, ref) {
     const labels = {
-        pass1: 'New Password',
-        pass2: 'Confirm Password'
+        mainData: 'New ',
+        controlData: 'Confirm '
+    }
+    const isMasked = !unmaskedInput.includes(name)
+    const ring = (focused == name) ? ' ring ring-violet-500' : ''
+
+    function handleFocusOn (event) {
+        event.preventDefault()
     }
 
-    function handleFocusOn (e) {
-        e.preventDefault()
-        if (focused != e.target.name) {
-            if (!focused) {setStyle('')}
-            setFocus (e.target.name)
+    function handleInputClick (event, inputName) {
+        const elementName = inputName ? inputName : event?.target.name
+        if (focused != elementName) {
+            setUnmaskedInput(prev => {
+                const newList = prev.filter(element => element != focused)
+                return [...newList, elementName]
+            })
+            setFocus (elementName)
         }
+        setStyle('')
+        setTimeout(() => ref?.current?.scrollIntoView({ behavior: "smooth", block: "start"}), 300)
     }
 
     return <>
-    <label className='block text-md font-light'>{labels[name]}</label>
-    <div className='flex block border-solid border-violet-200 border-2 rounded mb-5 mx-auto text-md'>
+    <label className='block text-md font-light'>{labels[name] + label}</label>
+    <div className={'flex inline-block border-solid border-violet-200 border-2 rounded mb-5 mx-auto text-md h-8' + ring}>
+        <ShowStringBtn isMasked={isMasked} setUnmaskedInput={setUnmaskedInput} name={name}/>
         <input 
-            className = 'flex-auto min-full min-h-8 focus:outline-none pl-2' 
+            className = 'flex-auto w-full h-full focus:outline-none pl-2' 
             onFocus={handleFocusOn}
+            onClick={handleInputClick}
             value={value} 
-            name={name} 
+            name={name}
+            type={isMasked ? 'password' : 'text'}
             readOnly>
         </input>
-        <Clear key={uuidv4()} name={name} aggregator={aggregator}/>
+        <ClearBtn 
+            key={uuidv4()} 
+            aggregator={aggregator} 
+            inputName={name}
+            handleInputClick={handleInputClick}
+            />
     </div>
     </>
 }
 
-export default InputField
-
-// ring-offset-0 ring ring-violet-500
+export default forwardRef( InputField )

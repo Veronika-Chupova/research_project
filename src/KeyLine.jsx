@@ -3,11 +3,11 @@ import UpperKey from "./UpperKey"
 import Backspace from "./Backspace"
 import { v4 as uuidv4 } from 'uuid'
 
-function KeyLine ({ line, upper_case, active_field, aggregator, toggler, size, last }) {
+function KeyLine ({ line, upper_case, active_field, aggregator, toggler, size, last, keyboardMode }) {
 
     return <div className ={last ? 'flex flex-row justify-between' : ''}>
         {last && <UpperKey upper_case={upper_case} toggler = {toggler} size={size}/>}
-        <div className = 'flex flex-row gap-x-1.5 justify-center font-[San Francisco]'>
+        <div className = 'flex flex-row gap-x-1.5 justify-center'>
             {line.map(item => 
                 <Letter 
                     key={uuidv4()} 
@@ -16,6 +16,8 @@ function KeyLine ({ line, upper_case, active_field, aggregator, toggler, size, l
                     aggregator={aggregator} 
                     active_field={active_field}
                     size = {size}
+                    letters = {true}
+                    keyboardMode = {keyboardMode}
                 />
             )}
         </div>
